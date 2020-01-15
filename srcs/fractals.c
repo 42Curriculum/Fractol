@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:47:56 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/12 17:13:20 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:10:17 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int		draw_fractal(t_data **data)
 
 	mlx_clear_window((*data)->prgr, (*data)->window);
 	i = 0;
-	while (i < 1000)
+	while (i < (*data)->w)
 	{
 		n = 0;
-		while (n < 1000)
+		while (n < (*data)->w)
 		{
 			(*data)->x = n;
 			(*data)->y = i;
@@ -33,6 +33,9 @@ int		draw_fractal(t_data **data)
 		}
 		i++;
 	}
+//	(*data)->image.img_adress = mlx_get_data_addr((*data)->image.image,
+	//&(*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
+//	mlx_put_image_to_window((*data)->prgr, (*data)->window, (*data)->image.img_adress, 0, 0);
 	return (0);
 }
 
@@ -44,19 +47,38 @@ void	julia(double x, double y, t_data *data)
 	double c_r;
 	double c_i;
 	double z_rtmp;
+
 	i = 0;
-	//translate_coord(&x, &y, data);
-	z_r = x;
-	z_i = y;
-	z_r = 1.5 * (x - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_x;
-	z_i = (y - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_y;
-	/* c_r = -0.7;
-	c_i = 0.27015; */
-	while (i < data->it_max && (z_r * z_r + z_i * z_i) <= 4)
+	z_r = 1.5 * (x - data->w / 2) / (0.5 * data->zoom * data->w) - data->m_x;
+	z_i = (y - data->w / 2) / (0.5 * data->zoom * data->w) - data->m_y;
+	while (i < 100 && (z_r * z_r + z_i * z_i) <= 4)
 	{
 		z_rtmp = z_r;
 		z_r = z_r * z_r - z_i * z_i + data->c.real;
 		z_i = 2 * z_rtmp * z_i + data->c.im;
+		i++;
+	}
+	color_pick(i, data->x, data->y, &data);
+}
+
+void	mandelbrot(double x, double y, t_data *data)
+{
+	int i;
+	double z_r;
+	double z_i;
+	double c_r;
+	double c_i;
+	double z_rtmp;
+	i = 0;
+	c_r = 1.5 * (x - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_x;
+	c_i = (y - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_y;
+	z_r = c_r;
+	z_i = c_i;
+	while (i < 100 && (z_r * z_r + z_i * z_i) <= 4)
+	{
+		z_rtmp = z_r;
+		z_r = z_r * z_r - z_i * z_i + c_r;
+		z_i = 2 * z_rtmp * z_i + c_i;
 		i++;
 	}
 	color_pick(i, data->x, data->y, &data);

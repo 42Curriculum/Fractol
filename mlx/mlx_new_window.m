@@ -122,8 +122,8 @@ int get_mouse_button(NSEventType eventtype)
     event_funct[2](0xFF+the_key, event_param[2]);
   if (flag < keyflag && event_funct[3] != NULL)
     event_funct[3](0xFF+the_key, event_param[3]);
-  /*
-  if (event_funct[2] != NULL)
+  
+ /*  if (event_funct[2] != NULL)
     {
       if (!(keyflag & NSAlphaShiftKeyMask) && (flag&NSAlphaShiftKeyMask)) event_funct[2](0xFF+1, event_param[2]);
       if (!(keyflag & NSShiftKeyMask) && (flag&NSShiftKeyMask)) event_funct[2](0xFF+2, event_param[2]);

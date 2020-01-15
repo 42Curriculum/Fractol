@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:54:35 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/11 21:36:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:08:37 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,20 @@ typedef	struct	s_im
 	double		im;
 }				t_im;
 
+typedef struct s_image
+{
+	char 		*img_adress;
+	int			*image;
+	int			endian;
+	int			line_s;
+	int			bpp;
+}				t_image;
+
 typedef struct	s_data
 {
 	int			mouse_x;
 	int			mouse_y;
+	int			fractal;
 	int			it_max;
 	int			off_x;
 	int			off_y;
@@ -37,17 +47,23 @@ typedef struct	s_data
 	double		zoom;
 	void		*prgr;
 	void		*window;
+	double		m_x;
+	double		m_y;
 	t_im		c;
+	t_image		image;
 }				t_data;
 
-void			translate_coord(double *x, double *y, t_data *data);
+typedef void 	t_func(double x, double y, t_data *data);
+
+void			translate_coord(double *x,t_data *data);
 void			data_init(t_data **data);
 
 void			prgr_loop(int frac);
 
 int				draw_fractal(t_data **data);
 void			julia(double x, double y, t_data *data);
-void	new_julia(double x, double y, t_data *data);
+void			mandelbrot(double x, double y, t_data *data);
+
 
 void	color_pick(int iterations, int x, int y, t_data **data);
 
