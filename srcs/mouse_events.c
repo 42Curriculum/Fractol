@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:54:42 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 14:39:33 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:54:11 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ static int mouse_down(int key, int x, int y,t_data **data)
 		(*data)->zoom -= 0.5;
 	
 	return (1);
-}
-
-static int	mouse_button(int key, int x, int y, t_data **data)
-{
-	
-	if (key == K_SCROLL_U)
-		(*data)->zoom += 0.5;
-	if (key == K_SCROLL_D)
-		(*data)->zoom -= 0.5;
-	ft_putnbr(key);
-	return (0);
 }
 
 int 	moved(int x, int y, t_data **data)
@@ -86,7 +75,7 @@ void		prgr_loop(int frac)
 	data = (t_data *)malloc(sizeof(t_data));
 	data_init(&data);
 	draw_fractal(&data);
-	mlx_mouse_hook(data->window, mouse_button, &data);
+	mlx_key_hook(data->window, on_key, &data);
 	mlx_hook(data->window, 6, 0, moved, &data);
 	mlx_hook(data->window, 4, 0, mouse_up, &data);
 	mlx_hook(data->window, 5, 0, mouse_down, &data);

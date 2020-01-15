@@ -1,6 +1,6 @@
 NAME = fractol
 
-F_N = main fractals events data_init color_picker
+F_N = main fractals mouse_events data_init color_picker key_events
 OBJS = $(addprefix objects/, $(addsuffix .o, $(F_N)))
 FILES = $(addprefix srcs/, $(addsuffix .c, $(F_N)))
 

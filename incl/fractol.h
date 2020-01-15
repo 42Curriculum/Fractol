@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:54:35 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 14:08:37 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:53:22 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			translate_coord(double *x,t_data *data);
 void			data_init(t_data **data);
 
 void			prgr_loop(int frac);
+
+int	on_key(int key, t_data **data);
 
 int				draw_fractal(t_data **data);
 void			julia(double x, double y, t_data *data);
