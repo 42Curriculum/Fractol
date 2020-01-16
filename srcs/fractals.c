@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:47:56 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 14:10:17 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:16:45 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ int		draw_fractal(t_data **data)
 		}
 		i++;
 	}
-//	(*data)->image.img_adress = mlx_get_data_addr((*data)->image.image,
-	//&(*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
-//	mlx_put_image_to_window((*data)->prgr, (*data)->window, (*data)->image.img_adress, 0, 0);
+	//(*data)->image.image = mlx_new_image((*data)->prgr, (*data)->w, (*data)->w);
+	i = 1250;
+	while (i < 1350)
+	{
+		(*data)->image.img_adress[i] = RED;
+		i++;
+	}
+	mlx_put_image_to_window((*data)->prgr, (*data)->window, (*data)->image.image, 0, 0);
+	
 	return (0);
 }
 
@@ -70,8 +76,8 @@ void	mandelbrot(double x, double y, t_data *data)
 	double c_i;
 	double z_rtmp;
 	i = 0;
-	c_r = 1.5 * (x - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_x;
-	c_i = (y - data->w / 2) / (0.5 * data->zoom * data->w) + data->off_y;
+	c_r = 1.5 * (x - data->w / 2) / (0.5 * data->zoom * data->w) + data->m_x;
+	c_i = (y - data->w / 2) / (0.5 * data->zoom * data->w) + data->m_y;
 	z_r = c_r;
 	z_i = c_i;
 	while (i < 100 && (z_r * z_r + z_i * z_i) <= 4)

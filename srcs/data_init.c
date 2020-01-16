@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:23:13 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 14:08:58 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:17:01 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ void	data_init(t_data **data)
 	(*data)->mouse_x = 0;
 	(*data)->mouse_y = 0;
 	(*data)->it_max = 100;
-	(*data)->off_x = 0;
-	(*data)->off_y = 0;
 	(*data)->mode = -1;
 	(*data)->w = 500;
 	(*data)->zoom = 1.0;
 	(*data)->c.im = 0.27015;
 	(*data)->c.real = -0.7;
 	(*data)->image.image = mlx_new_image((*data)->prgr, (*data)->w, (*data)->w);
+	(*data)->image.img_adress = (int *)mlx_get_data_addr((void*)(*data)->image.image,
+	&(*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
 	(*data)->m_x = 0;
 	(*data)->m_y = 0;
+	(*data)->z_mode = 1;
 }
 
 void	translate_coord(double *x, t_data *data)

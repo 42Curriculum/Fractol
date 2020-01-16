@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 12:38:30 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 13:26:28 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:16:17 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	color_pick(int iterations, int x, int y, t_data **data)
 	win_min = 0;
 	iterations = ((j_max - j_min)*(iterations - win_min) / (win_max - win_min));
 	//mlx_clear_window(data->prgr, data->window);
-	//(*data)->image.image[y * (*data)->w + x] = ar[iterations];
+	(*data)->image.img_adress[y * (*data)->w + x] = ar[iterations];
 	
-	mlx_pixel_put((*data)->prgr, (*data)->window, (*data)->x, (*data)->y, ar[iterations]);
+	//mlx_pixel_put((*data)->prgr, (*data)->window, (*data)->x, (*data)->y, ar[iterations]);
 }

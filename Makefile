@@ -1,6 +1,6 @@
 NAME = fractol
 
-F_N = main fractals mouse_events data_init color_picker key_events
+F_N = main fractals mouse_events data_init color_picker key_events save_image
 OBJS = $(addprefix objects/, $(addsuffix .o, $(F_N)))
 FILES = $(addprefix srcs/, $(addsuffix .c, $(F_N)))
 
@@ -11,7 +11,7 @@ LIB_LINK = -L $(LIB) -l ft
 MLX_LINK = -L $(MLX) -l mlx
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-INCL = -I mlx/ -I incl/ -I libft/
+INCL = -I mlx/ -I incl/ -I libft/ -I stb/
 FLAGS = -g
 
 all : $(NAME)
