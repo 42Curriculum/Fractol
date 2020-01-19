@@ -6,18 +6,19 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:15:38 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 17:28:55 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 04:26:23 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/fractol.h"
 
-void prgr_loop(int frac, void *mlx)
+void prgr_loop(int frac, void *mlx, char **fr)
 {
 	t_data *data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	data->fractal = frac;
+	data->f_ar = fr;
 	data->prgr = mlx;
 	data->window = mlx_new_window(data->prgr, 500, 500, "Fract'ol");
 	data_init(&data);
@@ -40,11 +41,31 @@ void 	def_frac(char **frac)
 	frac[6] = ft_strdup("harry");
 }
 
+int		check_input(char *argv, char **frac)
+{
+	char *tmp;
+	int i;
+	
+	i = 0;
+	tmp = ft_strdup(argv);
+	ft_str_tolower(tmp);
+	while (i < 7)
+	{
+		if ((ft_strcmp(frac[i], tmp) == 0))
+			break ;
+		i++;
+	}
+	free(tmp);
+	if (i < 7)
+		return (i);
+	else
+		return (-1);
+}
+
 int		main(int argv, char **argp)
 {
 	char **fractals;
 	int i;
-	int n;
 
 	i = 0;
 	void *mlx = mlx_init();
@@ -52,14 +73,8 @@ int		main(int argv, char **argp)
 	def_frac(fractals);
 	if (argv == 2)
 	{
-		while (i < 7)
-		{
-			if ((n = ft_strcmp(fractals[i], ft_str_tolower(ft_strdup(argp[1]))) == 0))
-				break ;
-			i++;
-		}
-		if (i < 7)
-			prgr_loop(i, mlx);
+		if ((i = check_input(argp[1], fractals)) >= 0)
+			prgr_loop(i, mlx, fractals);
 		else
 			ft_putstr("Invalid name");
 	}

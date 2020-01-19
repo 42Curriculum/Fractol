@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 12:38:30 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 21:34:25 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 04:42:45 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 #include "../incl/fractol.h"
 #include <stdlib.h>
 
-void	def_blue(t_colors *color)
+void	def_blue(t_colors *color, t_data **data)
 {
 	int i;
-	unsigned int er;   //(x & 0x00ff0000) >> 16;
-	unsigned int eg; //(x & 0x0000ff00) >> 8;
-	unsigned int eb; // (x & 0x000000ff);
+	unsigned int er;
+	unsigned int eg;
+	unsigned int eb;
 	
-	er = (((B_PALE & 0x00ff0000) >> 16) - ((BLACK & 0x00ff0000) >> 16)) / 100;
-	eg = (((B_PALE & 0x0000ff00) >> 8) - ((BLACK & 0x0000ff00) >> 8)) / 100;
-	eb = ((B_PALE & 0x000000ff) - (BLACK & 0x000000ff)) / 100;
+	er = (((B_PALE & 0x00ff0000) >> 16) - ((WHITE & 0x00ff0000) >> 16)) / (*data)->max;
+	eg = (((B_PALE & 0x0000ff00) >> 8) - ((WHITE & 0x0000ff00) >> 8)) / (*data)->max;
+	eb = ((B_PALE & 0x000000ff) - (WHITE & 0x000000ff)) / (*data)->max;
 	color->r = ((BLACK & 0x00ff0000) >> 16);
 	color->g = ((BLACK & 0x0000ff00) >> 8);
 	color->b = (BLACK & 0x000000ff);
 	i = 0;
-	while (i < 100)
+	while (i < (*data)->max)
 	{
 		color->blue[i] = (((color->r << 8) + color->g) << 8) + color->b;
 		color->r += er;
@@ -40,20 +40,21 @@ void	def_blue(t_colors *color)
 }
 
 
-void	def_gold(t_colors *color)
+void	def_gold(t_colors *color, t_data **data)
 {
 	int i;
-	unsigned int er;   //(x & 0x00ff0000) >> 16;
-	unsigned int eg; //(x & 0x0000ff00) >> 8;
-	unsigned int eb; // (x & 0x000000ff);
+	unsigned int er;
+	unsigned int eg;
+	unsigned int eb;
 	
-	er = ((((WHITE & 0x00ff0000) >> 16) - ((B_NAVAL& 0x00ff0000) >> 16)));
-	eg = ((((WHITE & 0x0000ff00) >> 8) - ((B_NAVAL & 0x0000ff00) >> 8)));
-	eb = (((WHITE& 0x000000ff) - (B_NAVAL & 0x000000ff)));
-	color->r = (WHITE & 0x00ff0000) * er + (WHITE & 0x0000ff00) * er + (WHITE & 0x000000ff) * er;
-	color->r /= 100;
+	er = ((((WHITE & 0x00ff0000) >> 16) - ((OLIVE& 0x00ff0000) >> 16)));
+	eg = ((((WHITE & 0x0000ff00) >> 8) - ((OLIVE & 0x0000ff00) >> 8)));
+	eb = (((WHITE & 0x000000ff) - (OLIVE & 0x000000ff)));
+	color->r = ((OLIVE & 0x00ff0000) >> 16) / 99;
+	color->g = ((OLIVE & 0x0000ff00) >> 8) / 99;
+	color->b = (OLIVE & 0x000000ff) / 99;
 	i = 0;
-	while (i < 100)
+	while (i < 99)
 	{
 		color->gold[i] = (((color->r << 8) + color->g) << 8) + color->b;
 		color->r += er;
@@ -63,25 +64,25 @@ void	def_gold(t_colors *color)
 	}
 }
 
-void	def_green(t_colors *color)
+void	def_green(t_colors *color, t_data **data)
 {
 	int r;
 	int g;
 	int b;
 	int step;
 	int i;
-	unsigned int er;   //(x & 0x00ff0000) >> 16;
-	unsigned int eg; //(x & 0x0000ff00) >> 8;
+	unsigned int er;
+	unsigned int eg;
 	unsigned int eb;
 
-	er = (255 - 0)/100; //((WHITE & 0x00ff0000) >> 16) - ((RED & 0x00ff0000) >> 16);
-	eg = (255 - 255)/100;//((WHITE & 0x0000ff00) >> 8) - ((RED & 0x0000ff00) >> 8);
-	eb = (255 - 0)/100;//(WHITE& 0x000000ff) - (RED & 0x000000ff);
+	er = (255 - 0) / (*data)->max;
+	eg = (255 - 255) / (*data)->max;
+	eb = (255 - 0) / (*data)->max;
 	r = (((WHITE & 0x00ff0000) >> 16));
 	g = (((WHITE & 0x0000ff00) >> 8));
 	b = ((WHITE & 0x000000ff));
 	i = 0;
-	while (i < 100)
+	while (i < (*data)->max)
 	{
 		color->red[i] = ((((r << 8) + g) << 8) + b);
 		r += er;
@@ -91,45 +92,42 @@ void	def_green(t_colors *color)
 	}
 }
 
-void	def_red(t_colors *color)
+void	def_red(t_colors *color, t_data **data)
 {
-	int r;
-	int g;
-	int b;
-	int step;
 	int i;
-	unsigned int er;   //(x & 0x00ff0000) >> 16;
-	unsigned int eg; //(x & 0x0000ff00) >> 8;
-	unsigned int eb;
+	int er;
+	int eg;
+	int eb;
 
-	er = (255 - 255)/5; //((WHITE & 0x00ff0000) >> 16) - ((RED & 0x00ff0000) >> 16);
-	eg = (255 - 128)/5;//((WHITE & 0x0000ff00) >> 8) - ((RED & 0x0000ff00) >> 8);
-	eb = (255 - 0)/5;//(WHITE& 0x000000ff) - (RED & 0x000000ff);
-	r = (((WHITE & 0x00ff0000) >> 16));
-	g = (((WHITE & 0x0000ff00) >> 8));
-	b = ((WHITE & 0x000000ff));
-	i = 0;
-	while (i < 100)
-	{;
-		color->red[i] = ((((r << 8) + g) << 8) + b);
-		r += er;
-		g += eg;
-		b += eb;
-		i++;
+	er = (255 - 255) / (*data)->max;
+	eg = (255) / (*data)->max;
+	eb = (255) / (*data)->max;
+	color->r = (((WHITE & 0x00ff0000) >> 16));
+	color->g = (((WHITE & 0x0000ff00) >> 8));
+	color->b = ((WHITE &  0x000000ff));
+	i = (*data)->max;
+	while (i > 0)
+	{
+		color->red[i] = ((((color->r << 8) + color->g) << 8) + color->b);
+		color->r -= er;
+		color->g += eg;
+		color->b += eb;
+		i--;
+	
 	}
 }
 
-void	define_colors(t_colors *colors)
+void	define_colors(t_colors *colors, t_data **data)
 {
 	int i;
 	unsigned int r;
 	unsigned int g;
 	unsigned int b;
 
-	def_blue(colors);
-	def_gold(colors);
-	def_red(colors);
-	def_green(colors);
+	def_blue(colors, data);
+	def_gold(colors, data);
+	def_red(colors, data);
+	def_green(colors, data);
 	colors->colors = (int **)malloc(sizeof(int *) * 4);
 	colors->colors[0] = colors->blue;
 	colors->colors[1] = colors->red; 
@@ -148,11 +146,12 @@ void	color_pick(int iterations, int x, int y, t_data **data)
 	if (!(colors))
 	{
 		colors = (t_colors *)malloc(sizeof(t_colors));
-		define_colors(colors);
+		define_colors(colors, data);
 	}
+	(*data)->col_stru = colors;
 	j_min = 0;
 	j_max = 100;
-	win_max = (*data)->it_max;
+	win_max = (*data)->max;
 	win_min = 0;
 	iterations = ((j_max - j_min) * (iterations - win_min) / (win_max - win_min));
 	(*data)->image.img_adress[y * (*data)->w + x] = colors->colors[(*data)->color][iterations];

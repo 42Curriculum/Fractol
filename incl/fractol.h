@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:54:35 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 21:30:54 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 04:48:45 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_data
 {
 	void		*prgr;
 	void		*window;
+	char 		**f_ar;
 	int			mouse_x;
 	int			mouse_y;
 	int			fractal;
@@ -46,12 +47,13 @@ typedef struct	s_data
 	int			y;
 	int			z_mode;
 	int			color;
+	int 		max;
 	double		zoom;
 	double		m_x;
 	double		m_y;
-	
 	t_im		c;
 	t_image		image;
+	void		*col_stru;
 }				t_data;
 
 typedef void 	t_func(double x, double y, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:23:13 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/19 01:12:45 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 03:34:13 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	data_init(t_data **data)
 	(*data)->z_mode = 1;
 	(*data)->m_x = 0;
 	(*data)->color = 0;
+	(*data)->max = 10;
 }
 
 void	translate_coord(double *x, t_data *data)

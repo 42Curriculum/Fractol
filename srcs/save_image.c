@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 22:43:16 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 21:08:14 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 04:17:15 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	save_file(t_data **data)
 	if (!(open("images", O_RDONLY | O_DIRECTORY)))
 		system("mkdir images");
 	ft_putstr("Input file name :");
-	filename = get_name();;
+	filename = get_name();
 	str = ft_better_strjoin(ft_strdup("echo "), "images/");
 	str = ft_better_strjoin(str, filename);
 	system(str);
-//	free(str);
+	free(str);
 	str = ft_better_strjoin(ft_strdup("images/"), filename);
 	str = ft_better_strjoin(str, ".jpg");
 	while (i < (*data)->w * (*data)->w)
@@ -57,6 +57,6 @@ void	save_file(t_data **data)
 		i++;
 	}
 	stbi_write_jpg(str, (*data)->w, (*data)->w, 4, (*data)->image.img_adress, 500);
-	//free(filename);
-	//free(str);
+	free(filename);
+	free(str);
 }

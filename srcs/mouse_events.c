@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:54:42 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 14:55:10 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 03:54:36 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,11 @@ int mouse_up(int key, int x, int y, t_data **data)
 	translate_coord(&x_, *data);
 	translate_coord(&y_, *data);
 	if (key == K_MOUSE1)
-	{
 		(*data)->mode = 1;
-	}
 	if (key == K_SCROLL_U)
-	{
 		(*data)->zoom += 0.2;
-	}
 	if (key == K_SCROLL_D)
-	{
 		(*data)->zoom -= 0.2;
-	}
 	draw_fractal(data);
 
 	return (1);
@@ -42,11 +36,6 @@ int mouse_down(int key, int x, int y, t_data **data)
 {
 	if (key == K_MOUSE1)
 		(*data)->mode = -1;
-	else if (key == K_ESC)
-	{
-		mlx_destroy_window((*data)->prgr, (*data)->window);
-		exit(0);
-	}
 	return (1);
 }
 
