@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 11:54:35 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 23:41:39 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/18 21:30:54 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_image
 
 typedef struct	s_data
 {
+	void		*prgr;
+	void		*window;
 	int			mouse_x;
 	int			mouse_y;
 	int			fractal;
@@ -42,31 +44,39 @@ typedef struct	s_data
 	int			w;
 	int			x;
 	int			y;
+	int			z_mode;
+	int			color;
 	double		zoom;
-	void		*prgr;
-	void		*window;
 	double		m_x;
 	double		m_y;
-	int			z_mode;
+	
 	t_im		c;
 	t_image		image;
 }				t_data;
 
 typedef void 	t_func(double x, double y, t_data *data);
 
+t_func			*f_array(int i);
 void			translate_coord(double *x,t_data *data);
 void			data_init(t_data **data);
 
-void			prgr_loop(int frac);
+int 		mouse_down(int key, int x, int y, t_data **data);
+int 		mouse_up(int key, int x, int y, t_data **data);
+int 			moved(int x, int y, t_data **data);
 
 int				on_key(int key, t_data **data);
 
 int				draw_fractal(t_data **data);
 void			julia(double x, double y, t_data *data);
 void			mandelbrot(double x, double y, t_data *data);
+void			owo(double x, double y, t_data *data);
+void			mandelbrot2(double x, double y, t_data *data);
+void			mxjulia(double x, double y, t_data *data);
+void			phoenix(double x, double y, t_data *data);
+void			burningship(double x, double y, t_data *data);
 
-void	save_file(t_data *data);
+void			save_file(t_data **data);
 
-void	color_pick(int iterations, int x, int y, t_data **data);
+void			color_pick(int iterations, int x, int y, t_data **data);
 
 #endif

@@ -6,26 +6,29 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:23:13 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/16 14:17:01 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/19 01:12:45 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/fractol.h"
 #include "../incl/keys.h"
 
-t_func	*f_array()
+t_func	*f_array(int i)
 {
-	t_func *ar[3];
+	t_func *ar[7];
 
 	ar[0] = &julia;
 	ar[1] = &mandelbrot;
-	
+	ar[2] = &mxjulia;
+	ar[3] = &owo;
+	ar[4] = &burningship;
+	ar[5] = &phoenix;
+	ar[6] = &mandelbrot2;
+	return (ar[i]);
 }
 
 void	data_init(t_data **data)
 {
-	(*data)->prgr = mlx_init();
-	(*data)->window = mlx_new_window((*data)->prgr, 500, 500, "Fract'ol");
 	(*data)->mouse_x = 0;
 	(*data)->mouse_y = 0;
 	(*data)->it_max = 100;
@@ -36,10 +39,10 @@ void	data_init(t_data **data)
 	(*data)->c.real = -0.7;
 	(*data)->image.image = mlx_new_image((*data)->prgr, (*data)->w, (*data)->w);
 	(*data)->image.img_adress = (int *)mlx_get_data_addr((void*)(*data)->image.image,
-	&(*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
-	(*data)->m_x = 0;
-	(*data)->m_y = 0;
+	& (*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
 	(*data)->z_mode = 1;
+	(*data)->m_x = 0;
+	(*data)->color = 0;
 }
 
 void	translate_coord(double *x, t_data *data)

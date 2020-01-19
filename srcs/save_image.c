@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 22:43:16 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/15 23:16:11 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/18 21:08:14 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,34 @@ char	*get_name(void)
 	return (buffer);
 }
 
-void	save_file(t_data *data)
+void	save_file(t_data **data)
 {
 	char *filename;
 	char *str;
 	int fd;
+	int i;
+	int tmp;
 
-	if (open("images", O_RDONLY | O_DIRECTORY))
+	i = 0;
+	if (!(open("images", O_RDONLY | O_DIRECTORY)))
 		system("mkdir images");
 	ft_putstr("Input file name :");
 	filename = get_name();;
 	str = ft_better_strjoin(ft_strdup("echo "), "images/");
 	str = ft_better_strjoin(str, filename);
 	system(str);
-	free(str);
-	str = ft_better_strjoin("images/", filename);
-	stbi_write_jpg(filename, data->w, data->w, 3, data->image.image, data->w * 3);
-	free(filename);
-	free(str);
+//	free(str);
+	str = ft_better_strjoin(ft_strdup("images/"), filename);
+	str = ft_better_strjoin(str, ".jpg");
+	while (i < (*data)->w * (*data)->w)
+	{
+		
+		(*data)->image.img_adress[i] = ((*data)->image.img_adress[i] & 255) << 16 |
+		((*data)->image.img_adress[i] & 65280) |
+		((*data)->image.img_adress[i] & 16711680) >> 16;
+		i++;
+	}
+	stbi_write_jpg(str, (*data)->w, (*data)->w, 4, (*data)->image.img_adress, 500);
+	//free(filename);
+	//free(str);
 }

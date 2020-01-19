@@ -11,7 +11,7 @@ LIB_LINK = -L $(LIB) -l ft
 MLX_LINK = -L $(MLX) -l mlx
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-INCL = -I mlx/ -I incl/ -I libft/ -I stb/
+INCL = -I mlx/ -I incl/ -I libft/ 
 FLAGS = -g
 
 all : $(NAME)

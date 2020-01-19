@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 11:25:05 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/10 16:43:07 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/18 21:32:54 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,17 @@
 # define B_PALI 0x6666ff
 # define B_CIEL 0x9999ff
 # define B_PALE 0xccccff
+
+typedef struct s_colors
+{
+	unsigned int r;
+	unsigned int g;
+	unsigned int b;
+	int **colors;
+	int blue[100];
+	int red[100];
+	int green[100];
+	int gold[100];
+}				t_colors;
 
 #endif
