@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 11:25:05 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/18 21:32:54 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/20 14:55:32 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@
 # define PURPLE	0x800080
 # define TEAL	0x008080
 # define NAVY	0x000080
-
-
-/* Blues */
-
 # define B_NUIT 0x000033
 # define B_TERNE 0x000066
 # define B_NAVAL 0x000099
@@ -42,16 +38,15 @@
 # define B_CIEL 0x9999ff
 # define B_PALE 0xccccff
 
-typedef struct s_colors
+typedef struct		s_colors
 {
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
-	int **colors;
-	int blue[100];
-	int red[100];
-	int green[100];
-	int gold[100];
-}				t_colors;
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+	int				**colors;
+	int				blue[100];
+	int				red[100];
+	int				green[100];
+}					t_colors;
 
 #endif

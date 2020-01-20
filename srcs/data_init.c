@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:23:13 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/19 03:34:13 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/20 14:57:18 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	data_init(t_data **data)
 	(*data)->c.im = 0.27015;
 	(*data)->c.real = -0.7;
 	(*data)->image.image = mlx_new_image((*data)->prgr, (*data)->w, (*data)->w);
-	(*data)->image.img_adress = (int *)mlx_get_data_addr((void*)(*data)->image.image,
-	& (*data)->image.bpp, &(*data)->image.line_s, &(*data)->image.endian);
+	(*data)->image.img_adress = (int *)mlx_get_data_addr(
+	(void*)(*data)->image.image, &(*data)->image.bpp, &(*data)->image.line_s,
+	&(*data)->image.endian);
 	(*data)->z_mode = 1;
 	(*data)->m_x = 0;
 	(*data)->color = 0;
@@ -57,6 +58,6 @@ void	translate_coord(double *x, t_data *data)
 	j_max = 1;
 	win_max = data->w;
 	win_min = 0;
-	*x = ((j_max - j_min)*(*x - win_min) / (win_max - win_min));
+	*x = ((j_max - j_min) * (*x - win_min) / (win_max - win_min));
 	*x += j_min;
 }

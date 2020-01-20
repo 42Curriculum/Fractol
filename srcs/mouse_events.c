@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:54:42 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/19 03:54:36 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/20 14:30:08 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../incl/fractol.h"
 #include <stdio.h>
 
-int mouse_up(int key, int x, int y, t_data **data)
+int	mouse_up(int key, int x, int y, t_data **data)
 {
 	double x_;
 	double y_;
@@ -28,18 +28,17 @@ int mouse_up(int key, int x, int y, t_data **data)
 	if (key == K_SCROLL_D)
 		(*data)->zoom -= 0.2;
 	draw_fractal(data);
-
 	return (1);
 }
 
-int mouse_down(int key, int x, int y, t_data **data)
+int	mouse_down(int key, int x, int y, t_data **data)
 {
 	if (key == K_MOUSE1)
 		(*data)->mode = -1;
 	return (1);
 }
 
-int moved(int x, int y, t_data **data)
+int	moved(int x, int y, t_data **data)
 {
 	double x_;
 	double y_;
