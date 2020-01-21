@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:54:42 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/20 14:30:08 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/20 21:13:51 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@
 
 int	mouse_up(int key, int x, int y, t_data **data)
 {
-	double x_;
-	double y_;
-
-	translate_coord(&x_, *data);
-	translate_coord(&y_, *data);
+	(void)x;
+	(void)y;
 	if (key == K_MOUSE1)
 		(*data)->mode = 1;
 	if (key == K_SCROLL_U)
@@ -33,6 +30,8 @@ int	mouse_up(int key, int x, int y, t_data **data)
 
 int	mouse_down(int key, int x, int y, t_data **data)
 {
+	(void)x;
+	(void)y;
 	if (key == K_MOUSE1)
 		(*data)->mode = -1;
 	return (1);
