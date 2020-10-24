@@ -8,24 +8,24 @@ Available fractals : Julia, Mandelbrot, Owo, Phoenix, Burningship, Tom
 
 Bonuses : 
 
-- Scrollwheel : Zoom in and out
+- **Scrollwheel** : Zoom in and out
 
-- Space : Freeze /unfreeze fractal 
+- **Space** : Freeze /unfreeze fractal 
 
-- Right/Left arrows : Change color set
+- **Right/Left arrows** : Change color set
 
-- Upd/Down arrows : Change LOD
+- **Up/Down arrows** : Change LOD
 
-- Enter : Save image. Enter image name in termanl. Image will saved in images/[image_names]
+- **Enter** : Save image. Enter image name in termanl. Image will saved in images/[image_names]
 
 ## Julia fractal
 
-![][images/Julia2.jpg]
+![](images/Julia2.jpg)
 
 ## Owo fractal | A fractal I came up with
 
-![][images/Owo.jpg]
+![](images/Owo.jpg)
 
 ## Mandelbrot
 
-![][images/Mandelbrot.jpg]
+![](images/Mandelbrot.jpg)
