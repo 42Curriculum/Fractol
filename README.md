@@ -1,7 +1,7 @@
 # Fractol
 
 This project is about recreating different types of fractals using Minilibx (42's graphic library, which is based on OpenGl)
-
+<br> <img align="right" width="250" src="https://github.com/42Curriculum/Fractol/blob/master/fractol.PNG"/><br>
 Usage : ./fractol [fractal_name]
 
 Available fractals : Julia, Mandelbrot, Owo, Phoenix, Burningship, Tom
